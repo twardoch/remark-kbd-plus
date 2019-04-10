@@ -64,7 +64,7 @@ function plugin() {
   if (Compiler) {
     var visitors = Compiler.prototype.visitors;
     visitors.kbd = function (node) {
-      return '||' + this.all(node).join('') + '||';
+      return '++' + this.all(node).join('') + '++';
     };
   }
 }

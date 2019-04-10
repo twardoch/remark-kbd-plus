@@ -8,7 +8,7 @@ If you are using [rehype][rehype], the stringified HTML result will be `<kbd>`.
 ## Syntax
 
 ```markdown
-Hit ||enter|| twice to create a new paragraph.
+Hit ++Enter++ twice to create a new paragraph.
 ```
 
 ## AST (see [mdast][mdast] specification)
@@ -23,7 +23,7 @@ interface Kbd <: Parent {
 
 For example, the following markdown:
 
-`||enter||`
+`++Cmd+Alt+M++`
 
 Yields:
 
@@ -32,7 +32,7 @@ Yields:
   type: 'kbd',
   children: [{
     type: 'text',
-    value: 'enter'
+    value: 'Cmd+Alt+M'
   }]
 }
 ```

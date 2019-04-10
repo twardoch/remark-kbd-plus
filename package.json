@@ -20,7 +20,7 @@
   },
   "main": "dist/index.js",
   "files": [
-    "LICENSE-MIT",
+    "LICENSE",
     "dist",
     "src",
     "README.md"
