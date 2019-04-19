@@ -2,9 +2,9 @@
 
 exports[`parses kbd parses a big fixture 1`] = `
 "<p>Blabla <kbd>ok</kbd> kxcvj <kbd>ok foo</kbd> sdff</p>
-<p>sdf |||| df</p>
-<p>sfdgs | | dfg || dgsg | qs</p>
-<p>With two pipes: ||key|| you'll get <kbd>key</kbd>.</p>
+<p>sdf ++++ df</p>
+<p>sfdgs + + dfg ++ dgsg + qs</p>
+<p>With two pluses: ++key++ you'll get <kbd>key</kbd>.</p>
 <p>It can contain inline markdown:</p>
 <ul>
 <li><kbd>hell<a href=\\"#he\\"><del>o</del></a>?</kbd></li>
@@ -16,20 +16,20 @@ exports[`parses kbd parses a big fixture 1`] = `
 `;
 
 exports[`to markdown 1`] = `
-"Blabla ||ok|| kxcvj ||ok foo|| sdff
+"Blabla ++ok++ kxcvj ++ok foo++ sdff
 
-sdf |||| df
+sdf ++++ df
 
-sfdgs | | dfg || dgsg | qs
+sfdgs + + dfg ++ dgsg + qs
 
-With two pipes: \\\\||key|| you'll get ||key||.
+With two pluses: ++key++ you'll get ++key++.
 
 It can contain inline markdown:
 
--   ||hell[~~o~~](#he)?||
+-   ++hell[~~o~~](#he)?++
 
 It cannot contain blocks:
 
--   ||hello: \\\\[[secret]]?||
+-   ++hello: \\\\[[secret]]?++
 "
 `;

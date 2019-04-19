@@ -4,7 +4,7 @@ import reParse from 'remark-parse'
 import remarkStringify from 'remark-stringify'
 import rehypeStringify from 'rehype-stringify'
 import remark2rehype from 'remark-rehype'
-import remarkCustomBlocks from '../../remark-custom-blocks'
+import remarkCustomBlocks from 'remark-custom-blocks'
 
 import plugin from '../src/'
 
@@ -22,21 +22,21 @@ const render = text => unified()
   .processSync(text)
 
 const fixture = dedent`
-  Blabla ||ok|| kxcvj ||ok foo|| sdff
+  Blabla ++ok++ kxcvj ++ok foo++ sdff
 
-  sdf |||| df
+  sdf ++++ df
 
-  sfdgs | | dfg || dgsg | qs
+  sfdgs + + dfg ++ dgsg + qs
 
-  With two pipes: \||key|| you'll get ||key||.
+  With two pluses: \++key++ you'll get ++key++.
 
   It can contain inline markdown:
 
-  * ||hell[~~o~~](#he)?||
+  * ++hell[~~o~~](#he)?++
 
   It cannot contain blocks:
 
-  * ||hello: [[secret]]?||
+  * ++hello: [[secret]]?++
 `
 
 
@@ -48,10 +48,10 @@ describe('parses kbd', () => {
 
   it('escapes the start marker', () => {
     const {contents} = render(dedent`
-      ||one|| \||escaped|| ||three|| \|||four|| ||five||
+      ++one++ \++escaped++ ++three++ \+++four++ ++five++
     `)
-    expect(contents).toContain('||escaped||')
-    expect(contents).toContain('|<kbd>four</kbd>')
+    expect(contents).toContain('++escaped++')
+    expect(contents).toContain('+<kbd>four</kbd>')
   })
 })
 

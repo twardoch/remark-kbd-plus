@@ -1,9 +1,8 @@
-# remark-kbd-plus [![Build Status][build-badge]][build-status] [![Coverage Status][coverage-badge]][coverage-status]
+# remark-kbd-plus
 
-This plugin parses custom Markdown syntax to handle keyboard keys.
-It adds a new node type to the [mdast][mdast] produced by [remark][remark]: `kbd`
+This JS plugin for [remark][remark] parses custom Markdown syntax to handle keyboard keys in the format `++Cmd+Alt+M++` similar to used in the Python Markdown extension [pymdownx][pymdownx]. 
 
-If you are using [rehype][rehype], the stringified HTML result will be `<kbd>`.
+It adds a new node type to the [mdast][mdast] produced by [remark][remark]: `kbd`. While `pymdownx.keys` itemizes the single keys and allows creation of nested objects, `remark-kbd-plus` currently places the strings wrapped in `++` into one `kbd` node. If you are using [rehype][rehype], the stringified HTML result will be `<kbd>`.
 
 ## Syntax
 
@@ -39,7 +38,7 @@ Yields:
 
 ## Rehype
 
-This plugin is compatible with [rehype][rehype]. `Kbd` mdast nodes will become `<kbd>contents</kbd>`.
+This plugin is compatible with [rehype][rehype]. `Kbd` mdast nodes will become `<kbd>Cmd+Alt+M</kbd>`.
 
 ## Installation
 
@@ -72,27 +71,37 @@ unified()
   .use(stringify)
 ```
 
+## Changelog
+
+- 2019-04-14 
+
+## Copyright
+
+[remark-kbd-plus][remark-kbd-plus] © 2019 [Adam Twardoch][adam]
+Based on [remark-kbd][remark-kbd] © [Zeste de Savoir][zds]
+
 ## License
 
-[MIT][license] © [Zeste de Savoir][zds]
+[MIT][license] 
+
 
 <!-- Definitions -->
 
-[build-badge]: https://img.shields.io/travis/zestedesavoir/zmarkdown.svg
+[remark-kbd-plus]: https://github.com/twardoch/remark-kbd-plus/
 
-[build-status]: https://travis-ci.org/zestedesavoir/zmarkdown
+[remark-kbd]: https://github.com/zestedesavoir/zmarkdown/tree/master/packages/remark-kbd
 
-[coverage-badge]: https://img.shields.io/coveralls/zestedesavoir/zmarkdown.svg
+[adam]: https://twardoch.github.io/
 
-[coverage-status]: https://coveralls.io/github/zestedesavoir/zmarkdown
-
-[license]: https://github.com/zestedesavoir/zmarkdown/blob/master/packages/remark-kbd-plus/LICENSE-MIT
+[license]: https://github.com/twardoch/remark-kbd-plus/LICENSE
 
 [zds]: https://zestedesavoir.com
 
 [npm]: https://www.npmjs.com/package/remark-kbd-plus
 
 [mdast]: https://github.com/syntax-tree/mdast/blob/master/readme.md
+
+[pymdownx]: https://facelessuser.github.io/pymdown-extensions/extensions/keys/
 
 [remark]: https://github.com/remarkjs/remark
 
