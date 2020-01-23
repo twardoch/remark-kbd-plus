@@ -55,6 +55,6 @@
     "pretest": "eslint .",
     "test": "jest"
   },
-  "version": "1.0.19",
+  "version": "1.0.20",
   "description": "This JS plugin for [remark][remark] parses custom Markdown syntax to handle keyboard keys in the format `++Cmd+Alt+M++` similar to used in the Python Markdown extension [pymdownx][pymdownx]."
 }
