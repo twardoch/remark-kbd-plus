@@ -1,13 +1,13 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`parses kbd parses a big fixture 1`] = `
 "<p>Blabla <kbd>ok</kbd> kxcvj <kbd>ok foo</kbd> sdff</p>
 <p>sdf ++++ df</p>
 <p>sfdgs + + dfg ++ dgsg + qs</p>
-<p>With two pluses: ++key++ you'll get <kbd>key</kbd>.</p>
+<p>With two pluses: <kbd>key</kbd> you'll get <kbd>key</kbd>.</p>
 <p>It can contain inline markdown:</p>
 <ul>
-<li><kbd>hell<a href=\\"#he\\"><del>o</del></a>?</kbd></li>
+<li>++hell<a href="#he">~~o~~</a>??++</li>
 </ul>
 <p>It cannot contain blocks:</p>
 <ul>
@@ -26,10 +26,10 @@ With two pluses: ++key++ you'll get ++key++.
 
 It can contain inline markdown:
 
--   ++hell[~~o~~](#he)?++
+* ++hell[~~o~~](#he)?++
 
 It cannot contain blocks:
 
--   ++hello: \\\\[[secret]]?++
+* ++hello: \\[\\[secret]]?++
 "
 `;
