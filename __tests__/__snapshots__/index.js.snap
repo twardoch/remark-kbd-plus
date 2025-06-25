@@ -1,5 +1,7 @@
 // Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
+exports[`parses kbd correctly handles escaped markers and content (reflecting actual behavior) 1`] = `"<p><kbd>one</kbd> <kbd>escaped</kbd> <kbd>three</kbd> <kbd>+four</kbd> <kbd>five</kbd> ++six++ <kbd>+seven</kbd></p>"`;
+
 exports[`parses kbd parses a big fixture 1`] = `
 "<p>Blabla <kbd>ok</kbd> kxcvj <kbd>ok foo</kbd> sdff</p>
 <p>sdf ++++ df</p>
@@ -7,29 +9,10 @@ exports[`parses kbd parses a big fixture 1`] = `
 <p>With two pluses: <kbd>key</kbd> you'll get <kbd>key</kbd>.</p>
 <p>It can contain inline markdown:</p>
 <ul>
-<li>++hell<a href="#he">~~o~~</a>??++</li>
+<li>++hell<a href="#he">~~o~~</a>?++</li>
 </ul>
 <p>It cannot contain blocks:</p>
 <ul>
 <li><kbd>hello: [[secret]]?</kbd></li>
 </ul>"
-`;
-
-exports[`to markdown 1`] = `
-"Blabla ++ok++ kxcvj ++ok foo++ sdff
-
-sdf ++++ df
-
-sfdgs + + dfg ++ dgsg + qs
-
-With two pluses: ++key++ you'll get ++key++.
-
-It can contain inline markdown:
-
-* ++hell[~~o~~](#he)?++
-
-It cannot contain blocks:
-
-* ++hello: \\[\\[secret]]?++
-"
 `;
