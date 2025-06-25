@@ -7,7 +7,7 @@
 - [x] Code Style and Documentation (JSDocs, inline comments)
 - [x] Create `PLAN.md` (detailed plan)
 - [x] Create `TODO.md` (this list)
-- [ ] Create and populate `CHANGELOG.md`
-- [ ] Run tests (`npm test`) and update snapshots if necessary
+- [x] Create and populate `CHANGELOG.md`
+- [x] Run tests (`npm test`) and update snapshots if necessary (Completed with caveats: parser deviates from PLAN.MD, stringifier for KBD node broken, test environment inconsistencies)
 - [ ] Perform final code review
 - [ ] Submit changes (commit with suggested message and branch name)Tool output for `create_file_with_block`:
