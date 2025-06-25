@@ -9,8 +9,8 @@
     "Victor Felder <victor@draft.li> (https://draft.li)"
   ],
   "dependencies": {
-    "is-whitespace-character": "^2.0.1",
-    "unified": "^11.0.5"
+    "unified": "^11.0.5",
+    "unist-util-visit": "^5.0.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.27.2",
