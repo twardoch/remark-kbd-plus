@@ -138,32 +138,30 @@ export default function remarkKbdPlus() {
 
       // After the loop, handle any remaining state.
       if (inKbd) {
-        // Unterminated KBD sequence (e.g., "text ++kbd" without a closing "++").
-        // The opening '++' and the content that was thought to be KBD content
-        // should be treated as literal text.
-        var remainingText = kbdOpenMarker + buffer;
-        if (remainingText.length > 0) {
-          // If the last node added was a text node, append to it.
-          // Otherwise, create a new text node.
-          if (newNodes.length > 0 && newNodes[newNodes.length - 1].type === 'text') {
-            newNodes[newNodes.length - 1].value += remainingText;
-          } else {
-            newNodes.push({
-              type: 'text',
-              value: remainingText
-            });
-          }
-        }
-      } else {
-        // Loop finished, and not in an unterminated KBD.
-        // Add any remaining text from the buffer (e.g., text after the last KBD).
-        if (buffer.length > 0) {
-          newNodes.push({
-            type: 'text',
-            value: buffer
-          });
-        }
-      }
+              // Unterminated KBD sequence (e.g., "text ++kbd" without a closing "++").
+              // The opening '++' and the content that was thought to be KBD content
+              // should be treated as literal text.
+              var remainingText = kbdOpenMarker + buffer;
+              if (remainingText.length > 0) {
+                // If the last node added was a text node, append to it.
+                // Otherwise, create a new text node.
+                if (newNodes.length > 0 && newNodes[newNodes.length - 1].type === 'text') {
+                  newNodes[newNodes.length - 1].value += remainingText;
+                } else {
+                  newNodes.push({
+                    type: 'text',
+                    value: remainingText
+                  });
+                }
+              }
+            }
+      else if (buffer.length > 0) {
+                newNodes.push({
+                  type: 'text',
+                  value: buffer
+                });
+              }
+
 
       // Only replace the original node if actual changes were made.
       // Changes are made if newNodes has more than one entry, or if it has one entry
