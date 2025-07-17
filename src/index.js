@@ -56,11 +56,11 @@ export default function remarkKbdPlus(_options = {}) {
       }
 
       const newNodes = [];
-      let buffer = ""; // Accumulates characters for the current segment (text or kbd content)
+      let buffer = ''; // Accumulates characters for the current segment (text or kbd content)
       let inKbd = false; // True if we are currently parsing inside ++...++
       // Stores the opening "++" characters if inKbd is true.
       // This is used to reconstruct literal text if a KBD sequence is unterminated.
-      let kbdOpenMarker = "";
+      let kbdOpenMarker = '';
 
       for (let i = 0; i < value.length; i++) {
         // 1. Handle escape character '\'
@@ -85,7 +85,7 @@ export default function remarkKbdPlus(_options = {}) {
             // Case A: Avoid '++++' (four pluses) from being treated as nested or empty KBD.
             // If '++++' is found, treat it as literal text "++++".
             if (value[i + 2] === '+' && value[i + 3] === '+') {
-              buffer += "++++";
+              buffer += '++++';
               i += 3; // Advance i past the "++++" sequence
               continue;
             }
@@ -93,7 +93,7 @@ export default function remarkKbdPlus(_options = {}) {
             // Case B: Avoid '++' followed by whitespace (e.g., "++ key") from opening a KBD.
             // Such sequences are treated as literal "++".
             if (isWhitespace(value.charAt(i + 2))) {
-              buffer += "++";
+              buffer += '++';
               i += 1; // Advance i past this "++" (loop's i++ will handle the second '+')
               continue;
             }
@@ -104,9 +104,9 @@ export default function remarkKbdPlus(_options = {}) {
             if (buffer.length > 0) {
               newNodes.push({ type: 'text', value: buffer });
             }
-            buffer = ""; // Reset buffer for the KBD content.
+            buffer = ''; // Reset buffer for the KBD content.
             inKbd = true; // Set state to indicate we are now inside a KBD.
-            kbdOpenMarker = "++"; // Record the marker characters.
+            kbdOpenMarker = '++'; // Record the marker characters.
             i += 1; // Advance i past the "++" sequence.
           } else { // ---- Currently IN KBD: Looking for a CLOSING ++ ----
             // --- Valid CLOSING "++" found ---
@@ -116,9 +116,9 @@ export default function remarkKbdPlus(_options = {}) {
               children: [{ type: 'text', value: buffer }],
               data: { hName: 'kbd' }, // Data for HTML transformation (rehype)
             });
-            buffer = ""; // Reset buffer for any text that might follow the KBD.
+            buffer = ''; // Reset buffer for any text that might follow the KBD.
             inKbd = false; // Set state to indicate we are no longer in a KBD.
-            kbdOpenMarker = ""; // Clear the recorded opening marker.
+            kbdOpenMarker = ''; // Clear the recorded opening marker.
             i += 1; // Advance i past the "++" sequence.
           }
         } else {

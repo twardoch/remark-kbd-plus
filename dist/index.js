@@ -55,11 +55,11 @@ export default function remarkKbdPlus() {
         return;
       }
       var newNodes = [];
-      var buffer = ""; // Accumulates characters for the current segment (text or kbd content)
+      var buffer = ''; // Accumulates characters for the current segment (text or kbd content)
       var inKbd = false; // True if we are currently parsing inside ++...++
       // Stores the opening "++" characters if inKbd is true.
       // This is used to reconstruct literal text if a KBD sequence is unterminated.
-      var kbdOpenMarker = "";
+      var kbdOpenMarker = '';
       for (var i = 0; i < value.length; i++) {
         // 1. Handle escape character '\'
         // If a backslash is encountered, the next character is treated literally.
@@ -84,7 +84,7 @@ export default function remarkKbdPlus() {
             // Case A: Avoid '++++' (four pluses) from being treated as nested or empty KBD.
             // If '++++' is found, treat it as literal text "++++".
             if (value[i + 2] === '+' && value[i + 3] === '+') {
-              buffer += "++++";
+              buffer += '++++';
               i += 3; // Advance i past the "++++" sequence
               continue;
             }
@@ -92,7 +92,7 @@ export default function remarkKbdPlus() {
             // Case B: Avoid '++' followed by whitespace (e.g., "++ key") from opening a KBD.
             // Such sequences are treated as literal "++".
             if (isWhitespace(value.charAt(i + 2))) {
-              buffer += "++";
+              buffer += '++';
               i += 1; // Advance i past this "++" (loop's i++ will handle the second '+')
               continue;
             }
@@ -106,9 +106,9 @@ export default function remarkKbdPlus() {
                 value: buffer
               });
             }
-            buffer = ""; // Reset buffer for the KBD content.
+            buffer = ''; // Reset buffer for the KBD content.
             inKbd = true; // Set state to indicate we are now inside a KBD.
-            kbdOpenMarker = "++"; // Record the marker characters.
+            kbdOpenMarker = '++'; // Record the marker characters.
             i += 1; // Advance i past the "++" sequence.
           } else {
             // ---- Currently IN KBD: Looking for a CLOSING ++ ----
@@ -124,9 +124,9 @@ export default function remarkKbdPlus() {
                 hName: 'kbd'
               } // Data for HTML transformation (rehype)
             });
-            buffer = ""; // Reset buffer for any text that might follow the KBD.
+            buffer = ''; // Reset buffer for any text that might follow the KBD.
             inKbd = false; // Set state to indicate we are no longer in a KBD.
-            kbdOpenMarker = ""; // Clear the recorded opening marker.
+            kbdOpenMarker = ''; // Clear the recorded opening marker.
             i += 1; // Advance i past the "++" sequence.
           }
         } else {
@@ -138,30 +138,32 @@ export default function remarkKbdPlus() {
 
       // After the loop, handle any remaining state.
       if (inKbd) {
-              // Unterminated KBD sequence (e.g., "text ++kbd" without a closing "++").
-              // The opening '++' and the content that was thought to be KBD content
-              // should be treated as literal text.
-              var remainingText = kbdOpenMarker + buffer;
-              if (remainingText.length > 0) {
-                // If the last node added was a text node, append to it.
-                // Otherwise, create a new text node.
-                if (newNodes.length > 0 && newNodes[newNodes.length - 1].type === 'text') {
-                  newNodes[newNodes.length - 1].value += remainingText;
-                } else {
-                  newNodes.push({
-                    type: 'text',
-                    value: remainingText
-                  });
-                }
-              }
-            }
-      else if (buffer.length > 0) {
-                newNodes.push({
-                  type: 'text',
-                  value: buffer
-                });
-              }
-
+        // Unterminated KBD sequence (e.g., "text ++kbd" without a closing "++").
+        // The opening '++' and the content that was thought to be KBD content
+        // should be treated as literal text.
+        var remainingText = kbdOpenMarker + buffer;
+        if (remainingText.length > 0) {
+          // If the last node added was a text node, append to it.
+          // Otherwise, create a new text node.
+          if (newNodes.length > 0 && newNodes[newNodes.length - 1].type === 'text') {
+            newNodes[newNodes.length - 1].value += remainingText;
+          } else {
+            newNodes.push({
+              type: 'text',
+              value: remainingText
+            });
+          }
+        }
+      } else {
+        // Loop finished, and not in an unterminated KBD.
+        // Add any remaining text from the buffer (e.g., text after the last KBD).
+        if (buffer.length > 0) {
+          newNodes.push({
+            type: 'text',
+            value: buffer
+          });
+        }
+      }
 
       // Only replace the original node if actual changes were made.
       // Changes are made if newNodes has more than one entry, or if it has one entry

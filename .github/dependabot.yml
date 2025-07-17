@@ -1,0 +1,15 @@
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    commit-message:
+      prefix: "chore"
+      include: "scope"
+    reviewers:
+      - "twardoch"
+    assignees:
+      - "twardoch"
+    open-pull-requests-limit: 10
+    versioning-strategy: increase

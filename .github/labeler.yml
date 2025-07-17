@@ -1,0 +1,34 @@
+documentation:
+  - "**/*.md"
+  - "docs/**/*"
+
+tests:
+  - "__tests__/**/*"
+  - "**/*.test.js"
+  - "**/*.spec.js"
+  - "jest.config.js"
+
+build:
+  - "package.json"
+  - "package-lock.json"
+  - "babel.config.*"
+  - ".babelrc*"
+  - "webpack.config.*"
+  - "rollup.config.*"
+  - "scripts/**/*"
+
+ci:
+  - ".github/workflows/**/*"
+  - ".github/dependabot.yml"
+
+dependencies:
+  - "package.json"
+  - "package-lock.json"
+
+source:
+  - "src/**/*"
+
+config:
+  - ".*"
+  - "*.config.*"
+  - "eslint.config.js"
