@@ -56,8 +56,15 @@
     "coverage": "NODE_OPTIONS=--experimental-vm-modules jest --coverage",
     "prepare": "del-cli dist && cross-env BABEL_ENV=production babel src --out-dir dist",
     "test": "NODE_OPTIONS=--experimental-vm-modules jest",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "version": "node scripts/version.js",
+    "build": "bash scripts/build.sh",
+    "release": "bash scripts/release.sh",
+    "test:full": "bash scripts/test.sh",
+    "dev": "bash scripts/dev.sh",
+    "install:local": "bash scripts/install-local.sh",
+    "prepack": "npm run version"
   },
-  "version": "1.0.20",
+  "version": "1.0.0-dev.1+b9fb5a3",
   "description": "This JS plugin for [remark][remark] parses custom Markdown syntax to handle keyboard keys in the format `++Cmd+Alt+M++` similar to used in the Python Markdown extension [pymdownx][pymdownx]."
 }
