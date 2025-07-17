@@ -65,6 +65,6 @@
     "install:local": "bash scripts/install-local.sh",
     "prepack": "npm run version"
   },
-  "version": "0.1.0",
+  "version": "1.0.0-dev.1+b9fb5a3",
   "description": "This JS plugin for [remark][remark] parses custom Markdown syntax to handle keyboard keys in the format `++Cmd+Alt+M++` similar to used in the Python Markdown extension [pymdownx][pymdownx]."
 }
